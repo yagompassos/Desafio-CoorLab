@@ -1,12 +1,13 @@
 #!/bin/bash
 
 # Instalação das dependências Python
-pip install flask
+pip install fastapi
+pip install "uvicorn[standard]"
 
-# Executa o servidor Flask em background
-python backend/main.py &
+# Executa o servidor fastapi em background
+python -m uvicorn backend.main:app --reload --port 3000 &
 
-# Espera um momento para o servidor Flask iniciar
+# Espera um momento para o servidor do backend iniciar
 sleep 5
 
 # Navega para o diretório "frontend"
