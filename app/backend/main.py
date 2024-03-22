@@ -3,7 +3,8 @@ from fastapi.middleware.cors import CORSMiddleware
 from typing import List
 import json
 
-from .models import City
+from .models import City, Transport
+from .services import get_best_transport_options
 
 app = FastAPI()
 
@@ -35,3 +36,8 @@ async def get_cities():
     cities = [{"cityName": city} for city in unique_cities]
 
     return cities
+
+@app.get("/transport", response_model=List[Transport])
+async def get_best_transport(city: str):
+    best_transport_options = get_best_transport_options(city)
+    return best_transport_options
