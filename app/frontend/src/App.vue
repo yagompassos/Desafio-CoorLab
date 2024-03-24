@@ -28,7 +28,7 @@ export default {
   --primary: #03a8b5;
   --light: #ecf6ff;
   --dark: #2b2f40;
-  --grey: #f3f3f3;
+  --grey: #e7e7e77e;
   --sidebar-width: 300px;
 }
 
@@ -52,7 +52,11 @@ body{
   display: flex; 
   flex-direction: column;
 }
+.header-containter{
+  width: 100%;
+}
 .calc-container{
+  margin-top: 150px  ;
   padding:2rem;
 }
 
