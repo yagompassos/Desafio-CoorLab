@@ -1,16 +1,20 @@
 <template>
     <header class="side-bar">
-        HEADER
+      .
     </header>
 </template>
   
-  <script>
+<script>
   export default {
     name: 'HeaderSection'
   }
   
-  </script>
+</script>
   
-  <style >
-  </style>
-  
+<style >
+header{
+  border-bottom: solid 1px;
+  width: 80vw;
+  height: 100px;
+}
+</style>

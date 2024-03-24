@@ -28,7 +28,7 @@ export default {
   --primary: #03a8b5;
   --light: #ecf6ff;
   --dark: #2b2f40;
-  --grey: #e4e4e4d7;
+  --grey: #f3f3f3;
   --sidebar-width: 300px;
 }
 
