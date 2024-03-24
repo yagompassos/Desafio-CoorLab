@@ -1,34 +1,31 @@
 from typing import List
-from .models import Transport
 
-def get_best_transport_options(city_name: str) -> List[Transport]:
-    # Filtre os dados de transporte para a cidade específica
+def get_best_transport_options(city_name: str, data: list):
+    # Filtering transport data only to the selected city
     transport_list = [item for item in data if item['city'] == city_name]
     
-    # Se não houver transporte disponível para a cidade, retorne uma lista vazia
     if not transport_list:
-        return []
+        return {}
     
-    # Inicialize as melhores opções de transporte como a primeira opção encontrada
-    best_options = [Transport(**transport_list[0])]
-    min_price_confort = float(transport_list[0]['price_confort'][3:])  # Remova o 'R$ ' e converta para float
-    min_price_econ = float(transport_list[0]['price_econ'][3:])  # Remova o 'R$ ' e converta para float
+    if len(transport_list) == 1:
+        return {'option': transport_list[0]}
     
-    # Itere sobre as outras opções de transporte para encontrar as melhores
+    # Initialize best options with the first item in the list 
+    fastest_transport = transport_list[0]
+    cheapest_transport = transport_list[0]
+    
+    # Iterar sobre as outras opções de transporte para encontrar as melhores
     for transport_data in transport_list[1:]:
-        price_confort = float(transport_data['price_confort'][3:])  # Remova o 'R$ ' e converta para float
-        price_econ = float(transport_data['price_econ'][3:])  # Remova o 'R$ ' e converta para float
+        # Converter a duração para horas
+        duration_current = int(transport_data['duration'].replace('h', ''))
+        fastest_duration = int(fastest_transport['duration'].replace('h', ''))
         
-        # Verifique se é a opção mais confortável até agora
-        if price_confort < min_price_confort:
-            best_options = [Transport(**transport_data)]
-            min_price_confort = price_confort
-        # Verifique se é a opção mais econômica até agora
-        elif price_econ < min_price_econ:
-            best_options = [Transport(**transport_data)]
-            min_price_econ = price_econ
-        # Se for igual ao preço mínimo, adicione à lista de melhores opções
-        elif price_confort == min_price_confort and price_econ == min_price_econ:
-            best_options.append(Transport(**transport_data))
+         # Check if it`s the fastest option untill now
+        if duration_current < fastest_duration:
+            fastest_transport = transport_data
+        
+        # Check if it`s cheapest option untill now
+        if float(transport_data['price_econ'][3:]) < float(cheapest_transport['price_econ'][3:]):
+            cheapest_transport = transport_data
     
-    return best_options
+    return {'fastest': fastest_transport, 'cheapest': cheapest_transport}

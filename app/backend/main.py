@@ -17,15 +17,17 @@ app.add_middleware(
     allow_headers=["*"],  # Cabeçalhos permitidos
 )
 
-# Abrindo a base de dados em jason para leiutra
+# Opening json data base for reading
 with open('backend/data.json', 'r') as f:
     data = json.load(f)['transport']
+
+print(data)
 
 @app.get("/")
 def get_root():
     return {"msg": "Funcionando"}
 
-# Endpoint para retornar a lista de cidades que estão com voos disponíveis
+# Endpoint that returns the list of cities with available flights in the data base in the moment
 @app.get("/cities", response_model=List[City])  
 async def get_cities():
     unique_cities = set()
@@ -37,7 +39,7 @@ async def get_cities():
 
     return cities
 
-@app.get("/transport", response_model=List[Transport])
+@app.get("/best_transport/{city}", response_model=dict)  
 async def get_best_transport(city: str):
-    best_transport_options = get_best_transport_options(city)
+    best_transport_options = get_best_transport_options(city, data)
     return best_transport_options
