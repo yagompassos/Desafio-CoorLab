@@ -5,7 +5,7 @@ pip install fastapi
 pip install "uvicorn[standard]"
 
 # Executa o servidor fastapi em background
-python -m uvicorn backend.main:app --reload --port 3000 &
+python3 -m uvicorn backend.main:app --reload --port 3000 &
 
 # Espera um momento para o servidor do backend iniciar
 sleep 5

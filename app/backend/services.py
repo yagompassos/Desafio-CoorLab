@@ -7,9 +7,6 @@ def get_best_transport_options(city_name: str, data: list):
     if not transport_list:
         return {}
     
-    if len(transport_list) == 1:
-        return {'option': transport_list[0]}
-    
     # Initialize best options with the first item in the list 
     fastest_transport = transport_list[0]
     cheapest_transport = transport_list[0]
