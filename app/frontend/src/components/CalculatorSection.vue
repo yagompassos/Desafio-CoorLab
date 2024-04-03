@@ -20,9 +20,10 @@
       <div class="showdata-area">
         <div v-if="isLoading">Carregando...</div>
         <div v-else-if="bestTransport.fastest && bestTransport.cheapest">
-          <h4>Essas são as melhores alternativas de viagem.</h4>
-          <FlightOption :flight="bestTransport.fastest" />
-          <FlightOption :flight="bestTransport.cheapest" :showPriceEcon="true" />
+          <h4>Essas são as melhores alternativas de viagem para a data selecionada.</h4>
+          <br>
+          <FlightOption :flight="bestTransport.fastest" :fastestOption="true"/>
+          <FlightOption :flight="bestTransport.cheapest" />
         </div>
         <div v-else>
           Nenhum dado selecionado
