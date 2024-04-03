@@ -3,19 +3,17 @@
     <div class="title">Calculadora de Viagem</div>
 
     <div class="content">
-
       <div class="select-area">
         <h3>Calcule o Valor da Viagem</h3>
         <label class="city-dropdown">
-          <h5>Destino </h5> 
+          <h5>Destino </h5>
           <select v-model="selectedCity">
             <option value="">Selecione o destino</option>
             <option v-for="city in cities" :key="city.cityName" :value="city.cityName">{{ city.cityName }}</option>
           </select>
         </label>
-        <div class="datepicker">
-          <!-- <datepicker v-model="selectedDate" placeholder="Selecione uma data"></datepicker> -->
-        </div>
+        <!-- <div class="datepicker">
+        </div> -->
         <button class="btn-search" @click="searchTrip">Buscar</button>
       </div>
 
@@ -23,21 +21,8 @@
         <div v-if="isLoading">Carregando...</div>
         <div v-else-if="bestTransport.fastest && bestTransport.cheapest">
           <h4>Essas são as melhores alternativas de viagem.</h4>
-          <div class="data-area-fast">
-            <h4 class="transport-title">{{ bestTransport.fastest.name }} </h4>
-            <p>Leito: {{ bestTransport.fastest.bed }} (Completo)</p>
-            <p>Tempo estimado: {{ bestTransport.fastest.duration }}</p>
-            <p>Preço: {{ bestTransport.fastest.price_confort }}</p>
-          </div>
-
-         <div class="data-area-cheap">
-          <h4 class="transport-title"> {{ bestTransport.cheapest.name }}</h4>
-          <p>Poltrona: {{ bestTransport.cheapest.seat }} (Convencional)</p>
-          <p>Duração: {{ bestTransport.cheapest.duration }}</p>
-          <p>Preço: {{ bestTransport.cheapest.price_econ }}</p>
-
-         </div>
-          
+          <FlightOption :flight="bestTransport.fastest" />
+          <FlightOption :flight="bestTransport.cheapest" :showPriceEcon="true" />
         </div>
         <div v-else>
           Nenhum dado selecionado
@@ -48,12 +33,12 @@
 </template>
 
 <script>
-// import Datepicker from 'vuejs-datepicker';
+import FlightOption from './FlightOption.vue';
 
 export default {
   name: 'CalculatorSection',
   components: {
-    // Datepicker
+    FlightOption
   },
   data() {
     return {
@@ -64,7 +49,7 @@ export default {
       showModal: false
     }
   },
-  methods:{
+  methods: {
     searchTrip() {
       if (!this.selectedCity) {
         alert("Insira os valores para realizar a cotação");
@@ -83,10 +68,10 @@ export default {
         })
     }
   },
-  mounted(){
+  mounted() {
     fetch('http://127.0.0.1:3000/cities')
-      .then ((res) => res.json())
-      .then (data => this.cities = data)
+      .then((res) => res.json())
+      .then(data => this.cities = data)
       .catch(err => console.log(err.message))
   },
 }
@@ -133,19 +118,13 @@ export default {
   outline: none;
 }
 
-.btn-search{
+.btn-search {
   background: var(--primary);
-  color: var(--dark)
-  outline
+  color: var(--dark);
+  outline: none;
 }
 
-.data-area-fast{
-  background: var(--grey );
-}
-
-.transport-title{
-  background: var(--primary);
-  padding: 10px;
-  border-radius: 5px;
+.data-area-fast {
+  background: var(--grey);
 }
 </style>
