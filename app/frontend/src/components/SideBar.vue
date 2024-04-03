@@ -1,7 +1,9 @@
 <template>
     <aside class="side-bar">
-        <img alt="Vue logo" src="../assets/logo.png">
-        <a><label><i class="fa fa-calculator" aria-hidden="true"></i> Calculdora de Viagem </label></a>
+        <img class="company-logo" alt="Vue logo" src="../assets/logo.png">
+        <a><img src="../assets/calculator_icon.png" width="20px">
+          <label><i class="fa fa-calculator" aria-hidden="true"></i> Calculdora de Viagem </label>
+        </a>
     </aside>
 </template>
   
@@ -29,7 +31,7 @@
     font-size: 24px;
   }
 
-  aside img {
+  .company-logo{
     margin-bottom:1rem;
     width: 250px;
   }

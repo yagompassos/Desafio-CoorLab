@@ -1,6 +1,9 @@
 <template>
   <div class="calculator-container">
-    <div class="title">Calculadora de Viagem</div>
+    <div class="title">
+      <img src="../assets/calculator_icon.png" width="20px">
+      Calculadora de Viagem
+    </div>
 
     <div class="content">
       <div class="select-area">
@@ -128,4 +131,5 @@ export default {
 .data-area-fast {
   background: var(--grey);
 }
+
 </style>
