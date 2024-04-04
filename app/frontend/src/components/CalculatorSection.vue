@@ -33,16 +33,21 @@
         </div>
       </div>
     </div>
+    <div v-if="showModal">
+      <ModalAlert @close-modal="closeModal" />
+    </div>
   </div>
 </template>
 
 <script>
 import FlightOption from './FlightOption.vue';
+import ModalAlert from './ModalAlert.vue';
 
 export default {
   name: 'CalculatorSection',
   components: {
-    FlightOption
+    FlightOption,
+    ModalAlert
   },
   data() {
     return {
@@ -57,7 +62,7 @@ export default {
   methods: {
     searchTrip() {
       if (!this.selectedCity || !this.selectedDate) {
-        alert("Insira os valores para realizar a cotação");
+        this.showModal= true;
         return
       }
       this.isLoading = true
@@ -71,6 +76,9 @@ export default {
           console.error('Erro ao buscar transporte:', error)
           this.isLoading = false
         })
+    },
+    closeModal() {
+      this.showModal = false;
     }
   },
   mounted() {
@@ -148,6 +156,7 @@ h5{
   width: 60%;
   height: 30px;
   align-self: center;
+  cursor: pointer;
 }
 
 .no-data-msg{
