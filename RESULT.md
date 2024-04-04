@@ -22,3 +22,13 @@ Pela falta de tempo, também deixei os ícones pra trás, e não os incluí na v
 ## Conclusão
 
 Todavia, foi bem legal participar, achei desafiador e foi um projeto que, nesse nível de abrangência de demandas pedidas (setup de ambiente com o script, backend e front end juntos), nunca tinha desenvolvido **sozinho** algo nesse nível. Mesmo que não resulte em nada no PS, com certeza vou pegar uma semaninha pra tentar polir esse projeto e deixá-lo no padrão do protótipo proposto.
+
+## Atualização (04/03/2024)
+
+Como descrito antes, não fui capaz de entregar o projeto completo no prazo que a Coorlab pediu, mas a partir do dia 03/04/2024, voltei a mexer no projeto para tentar enxugá-lo e terminá-lo de acordo com os requisitos pedidos no [README](./README.md). 
+
+Foi bem mais tranquilo resolver os problemas agora que não estava atribulado, comecei corrigindo o layout das opções de voo, adicionando os ícones e tentando deixar tudo igual ao protótipo fornecido. 
+
+Logo após que eu terminei isso, tentei novamente instalar os datepickers do vue, mas novamente por causa de documentação desatualizada tive problemas na implementação. Utilizei o input type date do html e funcionou perfeitamente pro que o projeto pedia.
+
+Então, para finalizar, fui consertar o modal. Com mais tempo, pude debugar o código e entender por que ele estava bugando a renderização da página, consegui corrigir bem rapidamente e isso concluiu o projeto, que agora está conforme o que foi proposto.
