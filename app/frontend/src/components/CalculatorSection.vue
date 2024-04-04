@@ -7,7 +7,7 @@
 
     <div class="content">
       <div class="select-area">
-        <h3>Calcule o Valor da Viagem</h3> <br>
+        <h4>Calcule o Valor da Viagem</h4> <br>
         <label class="city-dropdown">
           <h5>Destino </h5><br>
           <select class="input-box" v-model="selectedCity">
@@ -29,7 +29,7 @@
           <FlightOption :flight="bestTransport.cheapest" />
         </div>
         <div v-else>
-          Nenhum dado selecionado
+          <h4 class="no-data-msg">Nenhum dado selecionado.</h4>
         </div>
       </div>
     </div>
@@ -90,7 +90,8 @@ export default {
   margin-top: 150px;
   margin-left: 50px;
   border-radius: 10px;
-  min-width: 1000px;
+  width: 1100px;
+  padding: 0; 
 }
 
 .title {
@@ -116,17 +117,18 @@ export default {
   padding: 2rem;
   gap: 10px;
   justify-content: center;
+  width: 550px;
 }
 
 .input-box{
-  width: 232px;
+  width: 100%;
   min-height: 35px;
   background: var(--light);
   color: #777;
   border-radius: 3px;
   border: 1px solid rgba(126, 126, 126, 0.329);
   outline: none;
-  font: red;
+  font-size: 14px;
   padding: 10px;
 }
 
@@ -140,16 +142,20 @@ h5{
 .btn-search {
   background: var(--primary);
   color: var(--dark);
+  font-weight: bold;
   border-radius: 5px;
   border: none;
-  width: 75%;
+  width: 60%;
   height: 30px;
   align-self: center;
 }
 
-
+.no-data-msg{
+  font-size: large;
+}
 
 .showdata-area { 
+  margin: 0;
   width: 100%;
   display: flex;
   align-items: center;
