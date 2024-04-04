@@ -7,23 +7,23 @@
 
     <div class="content">
       <div class="select-area">
-        <h3>Calcule o Valor da Viagem</h3>
+        <h3>Calcule o Valor da Viagem</h3> <br>
         <label class="city-dropdown">
-          <h5>Destino </h5>
-          <select v-model="selectedCity">
+          <h5>Destino </h5><br>
+          <select class="input-box" v-model="selectedCity">
             <option value="">Selecione o destino</option>
             <option v-for="city in cities" :key="city.cityName" :value="city.cityName">{{ city.cityName }}</option>
           </select>
         </label>
-        <!-- <div class="datepicker">
-        </div> -->
+        <h5>Data </h5>
+          <input class="input-box" type="date" placeholder="Selecione uma data" v-model="selectedDate" /><br>
         <button class="btn-search" @click="searchTrip">Buscar</button>
       </div>
 
       <div class="showdata-area">
         <div v-if="isLoading">Carregando...</div>
         <div v-else-if="bestTransport.fastest && bestTransport.cheapest">
-          <h4>Essas são as melhores alternativas de viagem para a data selecionada.</h4>
+          <h4>Estas são as melhores alternativas de viagem para a data selecionada.</h4>
           <br>
           <FlightOption :flight="bestTransport.fastest" :fastestOption="true"/>
           <FlightOption :flight="bestTransport.cheapest" />
@@ -48,6 +48,7 @@ export default {
     return {
       cities: [],
       selectedCity: '',
+      selectedDate: '',
       bestTransport: {},
       isLoading: false,
       showModal: false
@@ -55,7 +56,7 @@ export default {
   },
   methods: {
     searchTrip() {
-      if (!this.selectedCity) {
+      if (!this.selectedCity || !this.selectedDate) {
         alert("Insira os valores para realizar a cotação");
         return
       }
@@ -89,6 +90,7 @@ export default {
   margin-top: 150px;
   margin-left: 50px;
   border-radius: 10px;
+  min-width: 1000px;
 }
 
 .title {
@@ -97,12 +99,14 @@ export default {
   font-style: 'Roboto';
   font-size: 30px;
   padding: 1rem;
+  border-radius: 10px 10px 0 0;
 }
 
 .content {
   display: flex;
   padding: 1rem;
   gap: 1rem;
+  height: 500px;
 }
 
 .select-area {
@@ -111,25 +115,45 @@ export default {
   flex-direction: column;
   padding: 2rem;
   gap: 10px;
+  justify-content: center;
 }
 
-.city-dropdown select {
-  width: 200px;
+.input-box{
+  width: 232px;
   min-height: 35px;
   background: var(--light);
+  color: #777;
   border-radius: 3px;
-  border: 1px solid var(--dark);
+  border: 1px solid rgba(126, 126, 126, 0.329);
   outline: none;
+  font: red;
+  padding: 10px;
 }
 
+option{
+  color: #777;
+  height: 10px;
+}
+h5{
+  margin-top: 5px;
+}
 .btn-search {
   background: var(--primary);
   color: var(--dark);
-  outline: none;
+  border-radius: 5px;
+  border: none;
+  width: 75%;
+  height: 30px;
+  align-self: center;
 }
 
-.data-area-fast {
-  background: var(--grey);
+
+
+.showdata-area { 
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 </style>
